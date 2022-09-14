@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>News Checker</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        color: #ebebeb;
+        background: linear-gradient(to bottom right, #294b7a, #192f4d);
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="margin: auto">
+      <div class="container" style="padding: 50px">
+        <div style="text-align: center; margin: 10px 0px 50px">
+          <h1>Fake News Checker</h1>
+          <h6>News checker: Fake or Real</h6>
+        </div>
+        <form action="/" method="post" class="col s12">
+          <div class="form-floating mb-3">
+            <label for="news" class="h5">Put News here</label>
+            <textarea
+              type="text"
+              class="form-control form-control-lg"
+              id="news"
+              name="news"
+              placeholder="Enter the News to check"
+            ></textarea>
+          </div>
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg btn-block"
+            style="margin-top: 20px; text-align: center"
+            value="Analyze News"
+          />
+        </form>
+        {% if news != "" %}
+        <div class = "container",  class="text-align: center; padding: 15px; margin: 2rem auto;">
+          <h4>News Analyzed</h4>
+          <p>{{news}}</p>
+          <h3>Result: {{percent}}% Real</h3>
+          {% for result in results %}
+          <span
+            ><h5>{{result['name']}}</h5>
+            <h6>
+              {% if result['result'] == 0 %}
+                Fake
+              {% else %}
+                Real
+              {% endif %}
+            </h6>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
